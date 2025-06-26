@@ -1,0 +1,37 @@
+# Core deep learning libraries
+torch
+torchvision
+torchaudio
+
+# Hugging Face and dataset tools
+transformers>=4.15.0
+datasets
+evaluate
+huggingface_hub
+
+# Vision model zoo (ConvNeXt, etc.)
+timm
+
+# Logging & experiment tracking
+tensorboard
+matplotlib
+scikit-learn
+seaborn
+
+# Image processing
+Pillow
+opencv-python
+
+# Utilities
+numpy
+pandas
+tqdm
+
+# Optional: Mixed precision training
+accelerate
+
+# Optional: for JSON config & training script
+pyyaml
+
+# Optional: run script-based training
+click
