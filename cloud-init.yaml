@@ -1,4 +1,13 @@
 #cloud-config
+
+users:
+  - name: mlgirl
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+    groups: sudo
+    home: /home/mlgirl
+    create_home: true
+
 package_update: true
 package_upgrade: true
 
@@ -9,8 +18,8 @@ packages:
   - ffmpeg
 
 write_files:
-  - path: /home/azureuser/requirements.txt
-    owner: azureuser:azureuser
+  - path: /home/mlgirl/requirements.txt
+    owner: mlgirl:mlgirl
     permissions: '0644'
     content: |
       torch
@@ -37,9 +46,9 @@ write_files:
 runcmd:
   - echo "Installing python packages..."
   - pip3 install --upgrade pip
-  - pip3 install -r /home/azureuser/requirements.txt
+  - pip3 install -r /home/mlgirl/requirements.txt
   - echo "Cloning repo..."
-  - git clone https://github.com/<YOUR_GITHUB>/plant-disease-classifier.git /home/azureuser/plant-disease-classifier
-  - cd /home/azureuser/plant-disease-classifier
+  - git clone https://github.com/NailaRais/image-classifier.git /home/mlgirl/image-classifier
+  - cd /home/mlgirl/image-classifier
   - echo "Starting training..."
   - python3 train.py
