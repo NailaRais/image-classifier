@@ -1,0 +1,45 @@
+#cloud-config
+package_update: true
+package_upgrade: true
+
+packages:
+  - git
+  - python3-pip
+  - libgl1-mesa-glx
+  - ffmpeg
+
+write_files:
+  - path: /home/azureuser/requirements.txt
+    owner: azureuser:azureuser
+    permissions: '0644'
+    content: |
+      torch
+      torchvision
+      torchaudio
+      transformers>=4.15.0
+      datasets
+      evaluate
+      huggingface_hub
+      timm
+      tensorboard
+      matplotlib
+      scikit-learn
+      seaborn
+      Pillow
+      opencv-python
+      numpy
+      pandas
+      tqdm
+      accelerate
+      pyyaml
+      click
+
+runcmd:
+  - echo "Installing python packages..."
+  - pip3 install --upgrade pip
+  - pip3 install -r /home/azureuser/requirements.txt
+  - echo "Cloning repo..."
+  - git clone https://github.com/<YOUR_GITHUB>/plant-disease-classifier.git /home/azureuser/plant-disease-classifier
+  - cd /home/azureuser/plant-disease-classifier
+  - echo "Starting training..."
+  - python3 train.py
